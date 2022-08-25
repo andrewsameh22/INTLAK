@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
 import 'package:better_player/better_player.dart';
 import '../../constants.dart';
+import '../widgets/default_button.dart';
+import 'Exam.dart';
 
 // ignore_for_file: prefer_const_constructors
 class SelectedLesson extends StatefulWidget {
@@ -13,44 +15,6 @@ class SelectedLesson extends StatefulWidget {
 
 class _SelectedLessonState extends State<SelectedLesson> {
   TextEditingController notesController = TextEditingController();
-  // final videoPlayerController = VideoPlayerController.network(
-  //     'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4');
-  //
-  // Future Test() async {
-  //   await videoPlayerController.initialize();
-  // }
-  //
-  // final chewieController = ChewieController(
-  //   videoPlayerController: videoPlayerController,
-  //   autoPlay: true,
-  //   looping: true,
-  // );
-  //
-  // final playerWidget = Chewie(
-  //   controller: chewieController,
-  // );
-  // BetterPlayerController _betterPlayerController = BetterPlayerController(
-  //   BetterPlayerConfiguration(),
-  // );
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
-  //       BetterPlayerDataSourceType.network,
-  //       "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
-  //   _betterPlayerController = BetterPlayerController(
-  //       BetterPlayerConfiguration(),
-  //       betterPlayerDataSource: betterPlayerDataSource);
-  // }
-  VideoPlayerController controller = VideoPlayerController.network(
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
-  @override
-  void initState() {
-    super.initState();
-
-    controller.initialize();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,29 +71,9 @@ class _SelectedLessonState extends State<SelectedLesson> {
                     ],
                   ),
                 ),
-                VideoPlayer(controller),
-                TextButton(
-                    onPressed: () {
-                      setState(() {
-                        controller.play();
-                      });
-                    },
-                    child: Text('plaaaaay')),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                // AspectRatio(
-                //   aspectRatio: 16 / 9,
-                //   child: BetterPlayer(
-                //     controller: _betterPlayerController,
-                //   ),
-                //   // child: BetterPlayer.network(
-                //   //   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-                //   //   betterPlayerConfiguration: BetterPlayerConfiguration(
-                //   //     aspectRatio: 16 / 9,
-                //   //   ),
-                //   // ),
-                // ),
                 Text(
                   'Notes',
                   style: GoogleFonts.rubik(
@@ -163,16 +107,22 @@ class _SelectedLessonState extends State<SelectedLesson> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     defaultButton(
+                      context: context,
                       color: Colors.green,
                       text: 'Easy',
-                      onpressed: () {},
+                      onpressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Exam()));
+                      },
                     ),
                     defaultButton(
+                      context: context,
                       color: Colors.yellow.shade800,
                       text: 'Medium',
                       onpressed: () {},
                     ),
                     defaultButton(
+                      context: context,
                       color: Colors.red,
                       text: 'Hard',
                       onpressed: () {},
@@ -187,24 +137,3 @@ class _SelectedLessonState extends State<SelectedLesson> {
     );
   }
 }
-
-Widget defaultButton({
-  required String text,
-  required onpressed,
-  required color,
-}) =>
-    Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: color,
-      ),
-      child: MaterialButton(
-        child: Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        onPressed: onpressed,
-      ),
-    );

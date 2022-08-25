@@ -9,10 +9,8 @@ import '../../cubit/registration_cubit_bloc.dart';
 import '../../cubit/registration_cubit_state.dart';
 import '../widgets/aTXTFld.dart';
 import '../widgets/basic_text_form_filed.dart';
-import '../widgets/login_text_filed.dart';
 import '../widgets/registration_button.dart';
-import '../widgets/selected_form_filed.dart';
-import '../widgets/text_form_filed_with_icon.dart';
+
 
 class PersonalInformation extends StatelessWidget {
   var formKey = GlobalKey<FormState>();

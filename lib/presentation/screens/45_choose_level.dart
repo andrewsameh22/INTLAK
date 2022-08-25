@@ -3,11 +3,53 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../constants.dart';
+import '../widgets/alert_dialog.dart';
 
-class ChooseLevel extends StatelessWidget {
+class Level {
+  Level(this.title, this.body, [this.isExpanded = false]);
+  String title;
+  String body;
+  Checkbox checker = Checkbox(value: false, onChanged: (value) {});
+  bool isExpanded;
+}
+
+List<Level> getLevels() {
+  return [
+    Level(
+      'Level 1',
+      'Expanded aho yababa',
+    ),
+    Level('Level 2', 'Expanded aho ya 7bibi'),
+    Level('Level 3', '3agbk el expanded awi??.'),
+    Level('Level 4', 'bs eh r2yk fl animation.'),
+  ];
+}
+
+class ChooseLevel extends StatefulWidget {
+  @override
+  State<ChooseLevel> createState() => _ChooseLevelState();
+}
+
+class _ChooseLevelState extends State<ChooseLevel> {
+  //bool isExpanded = false;
+
+  final List<Level> levels = getLevels();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     showDialog(
+      //         barrierDismissible: false,
+      //         context: context,
+      //         builder: (context) {
+      //           return Alert(
+      //             context,
+      //           );
+      //         });
+      //   },
+      // ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -95,9 +137,10 @@ class ChooseLevel extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Icon(
-                                Icons.cloud_done_rounded,
-                                color: dodblue,
+                              Image(
+                                image: AssetImage(
+                                  'assets/images/done.png',
+                                ),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.02,
@@ -117,9 +160,10 @@ class ChooseLevel extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Icon(
-                                Icons.cloud_done_rounded,
-                                color: dodblue,
+                              Image(
+                                image: AssetImage(
+                                  'assets/images/done.png',
+                                ),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.02,
@@ -139,9 +183,10 @@ class ChooseLevel extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Icon(
-                                Icons.cloud_done_rounded,
-                                color: dodblue,
+                              Image(
+                                image: AssetImage(
+                                  'assets/images/done.png',
+                                ),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.02,
@@ -164,11 +209,30 @@ class ChooseLevel extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                // ExpansionPanelList(
-                //   children: [
-                //     ExpansionPanel(headerBuilder: (BuildContext context), body: Text('asd'),),
-                //   ],
-                // ),
+                ExpansionPanelList(
+                  animationDuration: Duration(seconds: 1),
+                  elevation: 1,
+                  expandedHeaderPadding: EdgeInsets.all(8),
+                  expansionCallback: (int index, bool isExpanded) {
+                    setState(() {
+                      levels[index].isExpanded = !isExpanded;
+                    });
+                  },
+                  children: levels.map<ExpansionPanel>((Level level) {
+                    return ExpansionPanel(
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return ListTile(
+                          leading: level.checker,
+                          title: Text(level.title),
+                        );
+                      },
+                      body: ListTile(
+                        title: Text(level.body),
+                      ),
+                      isExpanded: level.isExpanded,
+                    );
+                  }).toList(),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
