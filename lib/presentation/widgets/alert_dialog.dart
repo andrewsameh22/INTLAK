@@ -35,7 +35,7 @@ import '../../constants.dart';
 //       ],
 //     );
 double rating = 0;
-
+TextEditingController notesController = TextEditingController();
 Widget buildRating() => RatingBar(
     initialRating: rating,
     minRating: 1,
@@ -116,6 +116,21 @@ Widget Alert(context) => AlertDialog(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
           buildRating(),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.07,
+            child: TextField(
+              controller: notesController,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Write Notes Here',
+              ),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
         ],
       ),
       actions: [

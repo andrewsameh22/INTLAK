@@ -23,6 +23,7 @@ Widget defaultButton({
       ),
       child: MaterialButton(
         child: Text(
+          textAlign: TextAlign.center,
           text,
           style: TextStyle(
             color: textColor ?? Colors.white,

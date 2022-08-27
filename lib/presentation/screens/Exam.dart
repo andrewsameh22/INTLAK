@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:task/presentation/widgets/default_button.dart';
 
 import '../../constants.dart';
 
@@ -113,16 +114,6 @@ class _ExamState extends State<Exam> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.arrow_forward,
-        ),
-        onPressed: () {
-          setState(() {
-            startTimer();
-          });
-        },
-      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -252,13 +243,6 @@ class _ExamState extends State<Exam> {
                                       color: greenBorderandShadow
                                           ? Color(0xff45CB6A)
                                           : Colors.grey,
-                                      // shadows: [
-                                      //   Shadow(
-                                      //     color: Colors.green,
-                                      //     offset: Offset.zero,
-                                      //     blurRadius: 10.0,
-                                      //   ),
-                                      // ],
                                     )
                                   : x == 1
                                       ? Icon(
@@ -289,81 +273,71 @@ class _ExamState extends State<Exam> {
                 ),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
+            Spacer(),
+            Material(
+              // shadowColor: Colors.grey.withAlpha(40),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                padding: EdgeInsets.all(15.0),
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      //$question
+                      'Science Exam',
+                      style: GoogleFonts.rubik(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            ' $questionNumber / questions.length',
+                            style: GoogleFonts.rubik(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Spacer(),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.arrow_back_outlined,
+                              size: 25,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                          ),
+                          defaultButton(
+                              text: 'Submit',
+                              onpressed: () {},
+                              color: dodblue,
+                              context: context),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
-        // child: PageView.builder(
-        //   itemCount: 10, //questions.lenth
-        //   physics: NeverScrollableScrollPhysics(),
-        //   itemBuilder: (context, index) {
-        //     // final question =questions[index];
-        //     return Column(
-        //       crossAxisAlignment: CrossAxisAlignment.start,
-        //       children: [
-        //         SizedBox(
-        //           height: MediaQuery.of(context).size.height * 0.02,
-        //         ),
-        //         Row(
-        //           mainAxisAlignment: MainAxisAlignment.start,
-        //           children: [
-        //             IconButton(
-        //               onPressed: () {
-        //                 Navigator.pop(context);
-        //                 stopTimer();
-        //                 resetTimer();
-        //               },
-        //               icon: Icon(
-        //                 Icons.close,
-        //                 color: Colors.black,
-        //               ),
-        //             ),
-        //             SizedBox(
-        //               width: MediaQuery.of(context).size.width * 0.2,
-        //             ),
-        //             Icon(
-        //               Icons.timer_outlined,
-        //               size: 30.0,
-        //             ),
-        //             SizedBox(
-        //               width: MediaQuery.of(context).size.width * 0.02,
-        //             ),
-        //             Text(
-        //               '${myDuration.inSeconds.toString()}s remaining',
-        //               style: GoogleFonts.rubik(
-        //                 fontSize: 18.0,
-        //                 color: linearColor,
-        //                 fontWeight: FontWeight.w500,
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //         SizedBox(
-        //           height: MediaQuery.of(context).size.height * 0.03,
-        //         ),
-        //         Container(
-        //           child: LinearPercentIndicator(
-        //             padding: EdgeInsets.all(0.0),
-        //             width: MediaQuery.of(context).size.width,
-        //             percent: myDuration.inSeconds / 120,
-        //             barRadius: Radius.circular(20),
-        //             // animation: true,
-        //             // animationDuration: 1500,
-        //             progressColor: linearColor,
-        //           ),
-        //         ),
-        //         SizedBox(
-        //           height: MediaQuery.of(context).size.height * 0.02,
-        //         ),
-        //         Padding(
-        //           padding: const EdgeInsets.all(15.0),
-        //           child: buildQuestion(Question: 'question'),
-        //         ),
-        //       ],
-        //     );
-        //   },
-        // ),
       ),
     );
   }
@@ -423,3 +397,73 @@ class _ExamState extends State<Exam> {
 //     ],
 //   );
 // }
+// child: PageView.builder(
+//   itemCount: 10, //questions.lenth
+//   physics: NeverScrollableScrollPhysics(),
+//   itemBuilder: (context, index) {
+//     // final question =questions[index];
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         SizedBox(
+//           height: MediaQuery.of(context).size.height * 0.02,
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.start,
+//           children: [
+//             IconButton(
+//               onPressed: () {
+//                 Navigator.pop(context);
+//                 stopTimer();
+//                 resetTimer();
+//               },
+//               icon: Icon(
+//                 Icons.close,
+//                 color: Colors.black,
+//               ),
+//             ),
+//             SizedBox(
+//               width: MediaQuery.of(context).size.width * 0.2,
+//             ),
+//             Icon(
+//               Icons.timer_outlined,
+//               size: 30.0,
+//             ),
+//             SizedBox(
+//               width: MediaQuery.of(context).size.width * 0.02,
+//             ),
+//             Text(
+//               '${myDuration.inSeconds.toString()}s remaining',
+//               style: GoogleFonts.rubik(
+//                 fontSize: 18.0,
+//                 color: linearColor,
+//                 fontWeight: FontWeight.w500,
+//               ),
+//             ),
+//           ],
+//         ),
+//         SizedBox(
+//           height: MediaQuery.of(context).size.height * 0.03,
+//         ),
+//         Container(
+//           child: LinearPercentIndicator(
+//             padding: EdgeInsets.all(0.0),
+//             width: MediaQuery.of(context).size.width,
+//             percent: myDuration.inSeconds / 120,
+//             barRadius: Radius.circular(20),
+//             // animation: true,
+//             // animationDuration: 1500,
+//             progressColor: linearColor,
+//           ),
+//         ),
+//         SizedBox(
+//           height: MediaQuery.of(context).size.height * 0.02,
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(15.0),
+//           child: buildQuestion(Question: 'question'),
+//         ),
+//       ],
+//     );
+//   },
+// ),

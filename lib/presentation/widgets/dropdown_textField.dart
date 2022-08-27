@@ -22,7 +22,7 @@ var Genders = [
   "Female",
 ];
 var Subjects = [
-  "Math",
+  "Math Math Math Math Math Math Math Math Math Math Math Math Math Math Math Math Math Math Math Math Math ",
   "3rbi",
 ];
 var YearOfEdu = [
@@ -42,37 +42,34 @@ Widget DropDown({
         border: Border.all(color: Color(0xffbebab3), width: 1),
         borderRadius: BorderRadius.circular(12.0),
       ),
+      padding: EdgeInsets.all(5.0),
       child: DropdownButton<String>(
-          value: SelectedValue,
-          style: GoogleFonts.rubik(
-            color: Colors.black,
-          ),
-          hint: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              hint,
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-          isExpanded: true,
-          iconSize: 32,
-          underline: SizedBox(),
-          iconDisabledColor: Color(0xffbebab3),
-          items: Selecteditems, //?? items.map(buildMenuitem).toList(),
-          onChanged: onChanged),
-    );
-
-DropdownMenuItem<String> buildMenuitem(String item) => DropdownMenuItem(
-      value: item,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Text(
-          item,
+        value: SelectedValue,
+        style: GoogleFonts.rubik(
+          color: Colors.black,
+        ),
+        hint: Text(
+          hint,
           style: TextStyle(
             fontSize: 16.0,
           ),
         ),
+        isExpanded: true,
+        iconSize: 32,
+        underline: SizedBox(),
+        iconDisabledColor: Color(0xffbebab3),
+        items: Selecteditems, //?? items.map(buildMenuitem).toList(),
+        onChanged: onChanged,
+      ),
+    );
+
+DropdownMenuItem<String> buildMenuitem(String item) => DropdownMenuItem(
+      value: item,
+      child: Text(
+        item,
+        style: TextStyle(
+          fontSize: 16.0,
+        ),
+        maxLines: null,
       ),
     );

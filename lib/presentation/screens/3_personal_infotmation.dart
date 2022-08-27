@@ -11,7 +11,6 @@ import '../widgets/aTXTFld.dart';
 import '../widgets/basic_text_form_filed.dart';
 import '../widgets/registration_button.dart';
 
-
 class PersonalInformation extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   late DateTime selectedDate;
@@ -88,7 +87,8 @@ class PersonalInformation extends StatelessWidget {
                             TxtFld(
                               picon: Icon(Icons.date_range),
                               controller: DateController,
-                              keyType: TextInputType.datetime,
+                              keyType: null,
+                              readOnly: true,
                               onTap: () {
                                 showDatePicker(
                                   context: context,

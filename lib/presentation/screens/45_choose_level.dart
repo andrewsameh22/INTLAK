@@ -38,18 +38,18 @@ class _ChooseLevelState extends State<ChooseLevel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     showDialog(
-      //         barrierDismissible: false,
-      //         context: context,
-      //         builder: (context) {
-      //           return Alert(
-      //             context,
-      //           );
-      //         });
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (context) {
+                return Alert(
+                  context,
+                );
+              });
+        },
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,

@@ -1,10 +1,12 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task/presentation/screens/Discussion.dart';
 import 'package:video_player/video_player.dart';
 import 'package:better_player/better_player.dart';
 import '../../constants.dart';
 import '../widgets/default_button.dart';
+import '../widgets/default_text_button.dart';
 import 'Exam.dart';
 
 // ignore_for_file: prefer_const_constructors
@@ -71,18 +73,41 @@ class _SelectedLessonState extends State<SelectedLesson> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                Row(
+                  children: [
+                    defaultTextButton(
+                      text: 'Download PDF',
+                      onpressed: () {},
+                      color: Colors.teal,
+                    ),
+                    Icon(
+                      Icons.menu_book_outlined,
+                      color: Colors.teal,
+                    )
+                  ],
                 ),
-                Text(
-                  'Notes',
-                  style: GoogleFonts.rubik(
-                    fontSize: 26.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      'Notes',
+                      style: GoogleFonts.rubik(
+                        fontSize: 26.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    defaultTextButton(
+                      text: 'Save Notes',
+                      onpressed: () {},
+                      color: Colors.teal,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   child: TextField(
                     controller: notesController,
                     decoration: InputDecoration(
@@ -119,7 +144,12 @@ class _SelectedLessonState extends State<SelectedLesson> {
                       context: context,
                       color: Colors.yellow.shade800,
                       text: 'Medium',
-                      onpressed: () {},
+                      onpressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Discussion()));
+                      },
                     ),
                     defaultButton(
                       context: context,

@@ -14,6 +14,7 @@ Widget TxtFld({
   validator,
   IconButton? sicon,
   bool isPassword = false,
+  bool? readOnly,
   //onSubmit,
 }) =>
     TextFormField(
@@ -22,6 +23,7 @@ Widget TxtFld({
       keyboardType: keyType,
       validator: validator,
       onTap: onTap,
+      readOnly: readOnly ?? false,
 
       //onChanged: onChanged,
       //onFieldSubmitted: onSubmit,
